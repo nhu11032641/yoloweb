@@ -65,7 +65,7 @@
 <p>选择格式为<strong>YOLO v5 PyTorch</strong>进行下载并解压。</p>
 <p><img alt="" height="311" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/430858908_790029299822268_6356198150742607549_n.png?stp=dst-png_p206x206&_nc_cat=103&ccb=1-7&_nc_sid=510075&_nc_ohc=dFY67KDcmz0AX-78jav&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdTOJu7vsWj-qUYOy__pSmIgHXo0s7Q-mBeUfiFcenq1fQ&oe=660EB346" width="526"/></p>
 <p>把<strong>【train】、【valid】、【test】</strong>放到<strong>【C:\Users\用户名\yolov5\data\</strong><strong>】</strong>内</p>
-<p><img alt="" height="221" src="https://img-blog.csdnimg.cn/20200917233122139.png" width="154"/></p>
+<p><img alt="" height="221" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/430837178_432738969189801_8686117373451160851_n.png?_nc_cat=100&ccb=1-7&_nc_sid=510075&_nc_ohc=bcOd0UD99MQAX-6uQUK&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdTEZou3_ot0RtzfBHrYxbiE7g8R8s9d7y13iwqSTXUimw&oe=660EC8C3" width="154"/></p>
 <h4 id="%23%E8%A1%A5%E5%85%85">#补充</h4>
 <p>images里的图片 跟 labels里的标签，是按文件名 1:1对应的（如：1.jpg 对应 1.txt标签文件）</p>
 <p><strong>训练自己的数据时也需要分成</strong><strong>【train】、【valid】、【test】并放在【C:\Users\用户名\yolov5\data\</strong><strong>】内</strong></p>
@@ -81,16 +81,16 @@
 <p>—————————————————</p>
 <p>在<strong>【C:\Users\用户名\yolov5\models】</strong>内新复制一个<strong>【yolov5s.yaml】（可用别的模型）</strong></p>
 <p>并将新复制出来的文件改名为【masktest.yaml】，右键【编辑】把<u><strong>nc修改为2</strong></u>，保存即可。</p>
-<p><img alt="" height="193" src="https://img-blog.csdnimg.cn/20200917235241467.png" width="410"/></p>
+<p><img alt="" height="193" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/430891702_1086170729172882_1011962469562057592_n.png?_nc_cat=104&ccb=1-7&_nc_sid=510075&_nc_ohc=DDBpR1EBf0YAX9eB_vY&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdSqfo8qIfhlqmVhOUDzMyj89B_ShHnNOyaGYlHllpg_Dw&oe=660EC875" width="410"/></p>
 <p>训练自己的数据时，请按需选择并修改yaml文件。<strong>要注意nc的值</strong></p>
 <p><u><strong>订正：depth和width如果没有特殊需求不需要修改。我的图片是x版本，但文字标注写的s！只改nc即可。</strong></u></p>
 <h4 id="4.2.2.%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%BF%90%E8%A1%8C"><strong><em><u>4.2.2.命令行运行</u></em></strong></h4>
 <p>CMD输入以下命令并执行</p>
 <p style="text-indent:33px;"><strong><em>python train.py --data</em> <u>test.yaml</u> <em>--cfg </em><u>./models/masktest.yaml</u><em> --weights '' --batch-size </em><u>16</u></strong></p>
 <p style="text-indent:0;"><em>提示：训练自己的数据时修改下划线部分即可，记得激活环境</em></p>
-<p><img alt="" height="64" src="https://img-blog.csdnimg.cn/20200918000244438.png" width="733"/></p>
+<p><img alt="" height="64" src="https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.15752-9/431064625_375049408724031_3417630876468859402_n.png?_nc_cat=110&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=dJ46J-SQok4AX8mcy8Q&_nc_ht=scontent.ftpe7-1.fna&oh=03_AdQIoU-F_o1XCq31lUsJdlFtdZyF8J3gY0GMdBTkXjKMSg&oe=660EBADD" width="733"/></p>
 <p>训练结束，打开<strong>【C:\Users\用户名\yolov5\runs\exp**\weights\】</strong></p>
-<p><img alt="" height="87" src="https://img-blog.csdnimg.cn/20200918001339780.png" width="181"/></p>
+<p><img alt="" height="87" src="https://scontent.ftpe7-4.fna.fbcdn.net/v/t1.15752-9/423619235_786092160038798_53150731947933253_n.png?_nc_cat=107&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=eumNQjElB1cAX_B0LWn&_nc_ht=scontent.ftpe7-4.fna&oh=03_AdRsubw1r5TnSLLjaY2jDpmK62we_Kcg00iaLAfmZBtWSA&oe=660EA330" width="181"/></p>
 <p><strong>best.pt</strong>就是我们需要的检测用的weights文件</p>
 <p> </p>
 <h4 id="%E4%BB%A5%E4%B8%8A%E4%BE%BF%E6%98%AF%E5%85%B3%E4%BA%8E%E8%AE%AD%E7%BB%83%E7%9A%84%E5%85%A8%E9%83%A8%E5%86%85%E5%AE%B9%EF%BC%8C%E6%9C%AC%E4%BA%BA%E8%BF%98%E5%9C%A8%E6%91%B8%E7%B4%A2%E4%B8%AD%EF%BC%8C%E6%AC%A2%E8%BF%8E%E6%8E%A2%E8%AE%A8">以上便是关于训练的全部内容，本人还在摸索中，欢迎探讨</h4>
