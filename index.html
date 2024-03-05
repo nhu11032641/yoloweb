@@ -1,0 +1,121 @@
+<html lang="zh-CN"><head><meta charset="UTF-8"><style>.nodata  main {width:1000px;margin: auto;}</style></head><body class="nodata " style=""><div class="main_father clearfix d-flex justify-content-center " style="height:100%;"> <div class="container clearfix " id="mainBox"><main><div class="blog-content-box">
+<div class="article-header-box">
+<div class="article-header">
+<div class="article-title-box">
+<h1 class="title-article" id="articleContentId">Win10 超详细 0基础 用YOLO V5训练自己数据集【使用篇】</h1>
+</div>
+
+</div>
+</div>
+<div id="blogHuaweiyunAdvert"></div>
+<article class="baidu_pl">
+<div class="article_content clearfix" id="article_content">
+<link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css" rel="stylesheet"/>
+<link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-044f2cf1dc.css" rel="stylesheet"/>
+<div class="htmledit_views" id="content_views">
+<h2 id="1.%E6%9C%AC%E6%96%87%E7%AE%80%E4%BB%8B"><u><strong>1.本文简介</strong></u></h2>
+<p>最近在研究YOLO V5的用法，借此机会整理一下，希望对大家有参考。</p>
+<p>搭建教程请见： <a href="https://blog.csdn.net/kasaiki/article/details/108651751">Win10 超详细 0基础 搭建YOLOV5教程【环境搭建篇】</a></p>
+<p>此文对YOLO V5性能不多做介绍，由于网上许多教程都略微有些繁杂，因此本文旨在展示 <strong>最简单 </strong>的 【搭建方法】和【用法】，供0基础的初学者也能上手。</p>
+<p>本文将涵盖【用YOLOV5做检测】、【训练自己的数据集】等内容，并提供相关工具的下载和基本用法。</p>
+<p><u><em><strong>#本文不涉及调参，或模型修改</strong></em></u></p>
+<p> </p>
+<h3 id="main-toc"><strong>目录</strong></h3>
+<p id="1.%E6%9C%AC%E6%96%87%E7%AE%80%E4%BB%8B-toc" style="margin-left:0px;"><a href="#1.%E6%9C%AC%E6%96%87%E7%AE%80%E4%BB%8B" rel="nofollow">1.本文简介</a></p>
+<p id="2.%C2%A0%E5%85%B3%E4%BA%8EYOLO%20V5%E3%80%90%E7%AE%80%E4%BB%8B%E3%80%91-toc" style="margin-left:0px;"><a href="#2.%C2%A0%E5%85%B3%E4%BA%8EYOLO%20V5%E3%80%90%E7%AE%80%E4%BB%8B%E3%80%91" rel="nofollow">2. 关于YOLO V5【简介】</a></p>
+<p id="3.%E5%A6%82%E4%BD%95%E7%94%A8YOLO%20V5%E8%BF%9B%E8%A1%8C%E6%A3%80%E6%B5%8B-toc" style="margin-left:0px;"><a href="#3.%E5%A6%82%E4%BD%95%E7%94%A8YOLO%20V5%E8%BF%9B%E8%A1%8C%E6%A3%80%E6%B5%8B" rel="nofollow">3.如何用YOLO V5进行检测</a></p>
+<p id="3.3.%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E6%9D%A5%E8%AE%AD%E7%BB%83%E7%BD%91%E7%BB%9C-toc" style="margin-left:0px;"><a href="#3.3.%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E6%9D%A5%E8%AE%AD%E7%BB%83%E7%BD%91%E7%BB%9C" rel="nofollow">4.如何用自己的数据集来训练</a></p>
+<hr id="hr-toc"/>
+<hr/>
+<p> </p>
+<h2 id="2.%C2%A0%E5%85%B3%E4%BA%8EYOLO%20V5%E3%80%90%E7%AE%80%E4%BB%8B%E3%80%91"><strong><u>2. 关于YOLO V5【简介】</u></strong></h2>
+<p>YOLO V5内置4种大小不同的默认模型</p>
+<p>【s版】小、快、精度低，【x版】大、慢、精度高</p>
+<p><img alt="" height="174" src="https://img-blog.csdnimg.cn/20200917212206760.png" width="623"/></p>
+<p>调用yolov5检测时，在控制台cmd按以下规则输入指令</p>
+<p><strong>python  detect.py  --source 【输入文件】 --weights 【权重文件】 </strong></p>
+<p><em>1.【detect.py】代表检测模式，用【train.py】则是训练自己的程序。</em></p>
+<p><em>2.【source】代表图像输入，训练时为yaml格式文件，检测时为图片路径。</em></p>
+<p><em>3.【weights】代表权重文件，训练结果。yolov5内置一些训好的权重文件。</em></p>
+<p><em>4.【yolov5s.pt】代表选择了yolov5s模型，可以用【yolo5m.pt】等其他模型去替换</em></p>
+<p> </p>
+<h2 id="3.%E5%A6%82%E4%BD%95%E7%94%A8YOLO%20V5%E8%BF%9B%E8%A1%8C%E6%A3%80%E6%B5%8B"><u><strong>3.如何用YOLO V5进行检测</strong></u></h2>
+<p>yolo v5支持用 <em>图片、视频、文件夹 </em>等多种格式的图像作输入。</p>
+<h3 id="3.1.%E7%94%A8%E9%BB%98%E8%AE%A4%E6%9D%83%E9%87%8D%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E6%A3%80%E6%B5%8B"><u>3.1.用默认权重文件进行检测</u></h3>
+<p>1.打开【anaconda navigator】→【CMD.exe Prompt】进入控制台</p>
+<p>2.将图片放在【C:\Users\用户名\yolov5\inference\images】内</p>
+<p>3.在CMD输入指令开始test</p>
+<hr/>
+<p><em><strong>cd yolov5</strong>   </em>                </p>
+<p><em><strong>activate yolov5</strong>  </em>       //若没有创建环境则不需要这一步</p>
+<p><strong><em>python detect.py --source ./inference/images/ --weights yolov5s.pt --conf 0.3</em>   </strong>  //阈值0.3可自行设定</p>
+<p><img alt="" height="154" src="https://img-blog.csdnimg.cn/20200917222122218.png" width="745"/></p>
+<p><strong>test结果</strong>在【C:\Users\用户名\yolov5\inference\output】文件夹</p>
+<p> </p>
+<h3 id="3.2.%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E8%AE%AD%E7%BB%83%E5%A5%BD%E7%9A%84%E6%9D%83%E9%87%8D%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E6%A3%80%E6%B5%8B"><u>3.2.用自己的训练好的权重文件进行检测</u></h3>
+<p>3.1.步骤不变，划线部分【yolov5s.pt】改为自己的权重文件即可，</p>
+<p style="text-indent:33px;"><strong>【默认权重】<em>python detect.py --source ./inference/images/ --weights </em><s>yolov5s.pt</s><em> --conf 0.3</em></strong></p>
+<p style="text-indent:33px;"><strong>【更改后例】</strong><em><strong>python detect.py --source ./inference/images/ --weights </strong></em><strong><u>./runs/exp**/weights/test.pt</u></strong><em><strong> --conf 0.3</strong></em></p>
+<p> </p>
+<h2 id="3.3.%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E6%9D%A5%E8%AE%AD%E7%BB%83%E7%BD%91%E7%BB%9C"><u>4.如何用自己的数据集来训练</u></h2>
+<p>本节将使用【yolov5s.pt】模型举例如何进行训练。</p>
+<p><strong>#数据制作方法暂未更新#</strong></p>
+<h3 id="3.3.1.%E6%95%B0%E6%8D%AE%E9%9B%86%E5%87%86%E5%A4%87"><u>4.1.数据集准备</u></h3>
+<p>这里用roboflow提供的<a href="https://public.roboflow.com/object-detection/mask-wearing" rel="nofollow">Mask Wearing Dataset(416×416，149imgs)</a>进行训练演示</p>
+<p>选择格式为<strong>YOLO v5 PyTorch</strong>进行下载并解压。</p>
+<p><img alt="" height="311" src="https://img-blog.csdnimg.cn/20200917230628962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2thc2Fpa2k=,size_16,color_FFFFFF,t_70" width="526"/></p>
+<p>把<strong>【train】、【valid】、【test】</strong>放到<strong>【C:\Users\用户名\yolov5\data\</strong><strong>】</strong>内</p>
+<p><img alt="" height="221" src="https://img-blog.csdnimg.cn/20200917233122139.png" width="154"/></p>
+<h4 id="%23%E8%A1%A5%E5%85%85">#补充</h4>
+<p>images里的图片 跟 labels里的标签，是按文件名 1:1对应的（如：1.jpg 对应 1.txt标签文件）</p>
+<p><strong>训练自己的数据时也需要分成</strong><strong>【train】、【valid】、【test】并放在【C:\Users\用户名\yolov5\data\</strong><strong>】内</strong></p>
+<p> </p>
+<h3 id="3.3.2.%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE"><strong><u>4.2.训练数据</u></strong></h3>
+<p>训练前需要配置2个yaml格式文件，便可进行训练。</p>
+<h4 id="4.2.1.%E9%85%8D%E7%BD%AEyaml%E6%96%87%E4%BB%B6"><u><strong><em>4.2.1.配置yaml文件</em></strong></u></h4>
+<p>在<strong>【C:\Users\用户名\yolov5】</strong>内新建一个<strong>test.txt</strong>，右键【编辑】，</p>
+<p>根据下面格式，写入训练集和验证集的路径，并把后缀【txt】改为【yaml】。（nc是类的数量）</p>
+<p>———————<strong>test.yaml</strong>———————</p>
+<p style="text-indent:0;">train: data/train/images<br/> val: data/valid/images</p>
+<p style="text-indent:0;">nc: 2                               <br/> names: ['mask', 'no-mask']</p>
+<p>—————————————————</p>
+<p>在<strong>【C:\Users\用户名\yolov5\models】</strong>内新复制一个<strong>【yolov5s.yaml】（可用别的模型）</strong></p>
+<p>并将新复制出来的文件改名为【masktest.yaml】，右键【编辑】把<u><strong>nc修改为2</strong></u>，保存即可。</p>
+<p><img alt="" height="193" src="https://img-blog.csdnimg.cn/20200917235241467.png" width="410"/></p>
+<p>训练自己的数据时，请按需选择并修改yaml文件。<strong>要注意nc的值</strong></p>
+<p><u><strong>订正：depth和width如果没有特殊需求不需要修改。我的图片是x版本，但文字标注写的s！只改nc即可。</strong></u></p>
+<h4 id="4.2.2.%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%BF%90%E8%A1%8C"><strong><em><u>4.2.2.命令行运行</u></em></strong></h4>
+<p>CMD输入以下命令并执行</p>
+<p style="text-indent:33px;"><strong><em>python train.py --data</em> <u>test.yaml</u> <em>--cfg </em><u>./models/masktest.yaml</u><em> --weights '' --batch-size </em><u>16</u></strong></p>
+<p style="text-indent:0;"><em>提示：训练自己的数据时修改下划线部分即可，记得激活环境</em></p>
+<p><img alt="" height="64" src="https://img-blog.csdnimg.cn/20200918000244438.png" width="733"/></p>
+<p>训练结束，打开<strong>【C:\Users\用户名\yolov5\runs\exp**\weights\】</strong></p>
+<p><img alt="" height="87" src="https://img-blog.csdnimg.cn/20200918001339780.png" width="181"/></p>
+<p><strong>best.pt</strong>就是我们需要的检测用的weights文件</p>
+<p> </p>
+<h4 id="%E4%BB%A5%E4%B8%8A%E4%BE%BF%E6%98%AF%E5%85%B3%E4%BA%8E%E8%AE%AD%E7%BB%83%E7%9A%84%E5%85%A8%E9%83%A8%E5%86%85%E5%AE%B9%EF%BC%8C%E6%9C%AC%E4%BA%BA%E8%BF%98%E5%9C%A8%E6%91%B8%E7%B4%A2%E4%B8%AD%EF%BC%8C%E6%AC%A2%E8%BF%8E%E6%8E%A2%E8%AE%A8">以上便是关于训练的全部内容，本人还在摸索中，欢迎探讨</h4>
+</div>
+</div>
+<div id="treeSkill"></div>
+</article>
+<script>
+  $(function() {
+    setTimeout(function () {
+      var mathcodeList = document.querySelectorAll('.htmledit_views img.mathcode');
+      if (mathcodeList.length > 0) {
+        for (let i = 0; i < mathcodeList.length; i++) {
+          if (mathcodeList[i].naturalWidth === 0 || mathcodeList[i].naturalHeight === 0) {
+            var alt = mathcodeList[i].alt;
+            alt = '\\(' + alt + '\\)';
+            var curSpan = $('<span class="img-codecogs"></span>');
+            curSpan.text(alt);
+            $(mathcodeList[i]).before(curSpan);
+            $(mathcodeList[i]).remove();
+          }
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+      }
+    }, 1000)
+  });
+</script>
+</div></html>
